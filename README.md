@@ -1,97 +1,74 @@
-# Multilingual Story Generator
+# Multilingual Animation Generator Platform
 
-## Note
+A sophisticated multimedia generation platform that converts stories into animated videos with multilingual support. Leverages LLMs and generative AI models to automate the entire process from script writing to video synthesis.
 
-Backend for the project cannot be shown due to research restriction and is in process of being published.
+## 🚀 Overview
 
-## Overview
+This platform focuses on generating multilingual scripts from stories using the **Gemma LLM**, fine-tuned on a custom dataset. It supports **Hindi**, **English**, and **Punjabi**, automatically generating scripts, scene breakdowns, background descriptions, and dialogues. These are then transformed into multimedia content using state-of-the-art generative models.
 
-This project focuses on generating multilingual scripts from stories using the **Gemma LLM** (Large Language Model), fine-tuned on a custom dataset. The project supports **Hindi**, **English**, and **Punjabi**, and automatically generates scripts, scenes, background descriptions, and dialogues, which are then transformed into multimedia content such as videos.
+## ✨ Key Features
 
-## Features
+- **Multilingual Support**: Fine-tuned model for script generation in Hindi, English, and Punjabi.
+- **Story to Script Conversion**: Automated generation of detailed scene breakdowns, character actions, and dialogues.
+- **AI-Driven Asset Generation**:
+  - **Images**: Generated using **SDXL** based on scene descriptions.
+  - **Audio**: Generated using **BarkTTS** for narration and sound effects.
+- **Automated Video Synthesis**: Seamlessly combines generated images and audio into a final video with transitions and effects.
 
-- **Multilingual Support**: The model is fine-tuned to understand and generate scripts in three languages—Hindi, English, and Punjabi.
-- **Story to Script Conversion**: Given a story, the model generates a script with detailed scene breakdowns, including character actions, background descriptions, and dialogues.
-- **Image and Audio Generation**:
-  - **Images** are generated using **SDXL** based on the scene background descriptions.
-  - **Audio** is generated using **BarkTTS**, providing narration and sound effects for each scene.
-- **Video Creation**: Generated images and audio are combined to produce a final video for each story.
+## 🛠️ Project Structure
 
-## Workflow
-
-1. **Prompt and Data Processing**  
-   The story and language inputs are processed by a prompt-making function which converts them into a structured format that can be interpreted by the **LLM** to generate JSON data for both image and audio models.
-
-2. **Audio and Image Generation**  
-   The JSON data produced by the **LLM** provides detailed scene information, which is fed into:
-
-   - The **Audio Model** for generating multiple audios per scene, using speaker voices and language preferences.
-   - The **Image Model** for generating multiple images per scene, based on background descriptions.
-
-3. **Narrative Generation and Scripting**  
-   The core of the project involves generating a script with detailed scene breakdowns, dialogues, and background descriptions. These outputs are then used to generate images and audio.
-
-4. **Video Merging**  
-   The generated images and audios are merged, and effects and transitions are added to create the final video output.
-
-### Process Flow Diagram
-
-1. **Story Input and Script Generation**
-   ![Script Generation Process](.github/images/promptOutput.png)
-
-2. **Image and Audio Generation**
-   ![Image and Audio Generation](.github/images/audioVideoModel.png)
-
-3. **Video Creation**
-   ![Video Creation Process](.github/images/mergeModel.png)
-
-4. **Overall System Architecture**
-   ![Main Model](.github/images/mainModel.png)
-
-## Dataset Structure
-
-The dataset is structured in JSON format with each entry representing a story and its associated scenes. Below is an example of the dataset structure:
-
-```json
-[
-  {
-    "story": "The story content",
-    "language": "English",
-    "scenes": [
-      {
-        "scene_number": 1,
-        "character": {
-          "active": ["Character1", "Character2"],
-          "inactive": ["Character3"]
-        },
-        "background_information": "Prompt for image generation for this scene",
-        "video_generation_info": {
-          "background": "Background description for video",
-          "objects": ["Object1", "Object2"],
-          "action": "Description of actions happening"
-        },
-        "audio": {
-          "narration": "Narration for the scene in English",
-          "sound_effects": ["SoundEffect1", "SoundEffect2"],
-          "sentiment_analysis": "Emotion conveyed in the narration"
-        }
-      }
-    ]
-  }
-]
+```text
+Multilingual_Animation_Generator_Platform/
+├── public/                 # Static assets and HTML template
+├── src/
+│   ├── components/         # React components for the UI
+│   ├── output/             # Directory for generated files
+│   ├── App.js              # Main React application logic
+│   ├── index.js            # Entry point
+│   └── App.css             # Component styling
+├── server.js               # Node.js backend server
+├── package.json            # Project dependencies and scripts
+└── README.md               # Project documentation
 ```
 
-## Sample Outputs
+## 💻 Tech Stack
 
-Here are two sample video outputs generated by the system:
+- **Frontend**: React.js, Styled Components, CoreUI Icons
+- **Backend**: Node.js, Express
+- **AI Models**: Gemma LLM (Scripting), SDXL (Images), BarkTTS (Audio)
+- **Utilities**: Axios, File-saver, React Player
 
-1. [Multilingual Video 1](.github/videos/multilingual_video1.mp4)
-2. [Multilingual Video 2](.github/videos/multilingual_video2.mp4)
+## ⚙️ Installation & Setup
 
-Youtube links can be found here: [Multilingual Video 1](https://youtu.be/-DnFm2LyrNg), [Multilingual Video 2](https://youtu.be/zE1gYHzUY-4)
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/namanviber/Multilingual_Animation_Generator_Platform.git
+   cd Multilingual_Animation_Generator_Platform
+   ```
 
-## Future Improvements
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-- **Add more language support**: Extend the model to support additional languages such as Spanish and French.
-- **Implement character voice differentiation**: Introduce different voices for individual characters to create a more immersive and personalized audio experience.
-- **Enhance video post-processing**: Improve the final video with more effects, transitions, and visual enhancements for a more polished output.
+3. **Start the development server**:
+   ```bash
+   npm start
+   ```
+
+4. **Start the backend server**:
+   ```bash
+   node server.js
+   ```
+
+## 🔄 Workflow
+
+1. **Input**: User provides a story and selects a language.
+2. **Scripting**: LLM processes the story into a structured JSON script.
+3. **Generation**:
+   - Audio model generates narration for each scene.
+   - Image model generates visuals based on background prompts.
+4. **Synthesis**: Images and audio are merged into the final video output.
+
+---
+*Note: Backend for the project involves research-restricted components and is in the process of being published.*
